@@ -1,0 +1,111 @@
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    padding: 6px 0px;
+    border-radius: 15px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.42857;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    border-radius: 35px;
+    font-size: 24px;
+    line-height: 1.33;
+}
+
+.form-group.required .col-form-label:after {
+    content: "*";
+    color: red;
+}
+
+#ui-datepicker-div {
+    margin-top: -49px;
+}
+
+.required-input {
+    border: 1px solid red;
+}
+
+@media screen and (max-device-width: 767px) {
+    .mobile-screen-label {
+        display: block;
+    }
+    .large-screen-label {
+        display: none;
+    }
+    .mobile-layout-button {
+        float: left !important;
+        clear: both;
+    }
+    .hide-on-mobile {
+        display: none;
+    }
+    .tbSignature-label {
+        margin-left: 2rem;
+    }
+    .navbar-nav {
+        background-color: azure;
+        z-index: 999999999;
+        position: absolute;
+    }
+    #progressbar li:last-of-type {
+        margin-right: 5px !important;
+    }
+    #progressbar {
+        padding-inline-start: 15px;
+    }
+}
+
+@media screen and (min-device-width: 768px) {
+    .large-screen-label {
+        display: flex;
+    }
+    .mobile-screen-label {
+        display: none;
+    }
+    .show-on-mobile {
+        display: block;
+    }
+    #tbSignature_agreement {
+        display: none;
+    }
+}
+
+.iti {
+    width: 100% !important;
+    display: block !important;
+  }
+
+  .error {
+    border-color: red;
+    background-color: #ffe6e6;  /* optional, for a light red background */
+  }
+
+  .hide {
+    display: none;
+}
+
+#error-msg, #s-error-msg {
+    color: red;
+    font-size: 12px;
+}
+
+#valid-msg, #s-valid-msg {
+    color: green;
+    font-size: 12px;
+}
+
+.container, .container-fluid, .container-lg, .container-md, .container-sm, .container-xl, .container-xxl {
+    margin: 0 !important;
+    max-width: 100% !important;
+}
+
+.bp-status-links,
+.bp-status-links:hover{
+    color: #fff;
+    text-decoration:none
+}

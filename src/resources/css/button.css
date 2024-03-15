@@ -1,0 +1,66 @@
+.btn-navy {
+    color:  white;
+    background-color: #0090da;
+    border-color: transparent;
+    border-radius: 5px;
+}
+
+.btn-navy:hover {
+    background-color: #f6be00;
+    color: #0090da;
+}
+
+.btn-navy:disabled:hover{
+    background-color: #cacaca;
+    border-color: transparent;
+    border-width: 1px; 
+    color: white;
+} 
+
+.btn-navy:disabled{
+    background-color: #cacaca;
+    border-color: transparent;
+    border-width: 1px; 
+} 
+
+.btn-navy:not(:disabled):not(.disabled).active {
+    color:  white;
+    background-color: #0090da;
+    border-color: transparent;
+}
+
+.btn-navy:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus
+    {
+    box-shadow: none;
+    background-color: #0090da;
+}
+
+.step-navy {
+    color:  white;
+    background-color: #0090da;
+    border-color: transparent;
+    border-radius: 5px;
+}
+
+.step-navy:disabled {
+    background-color: white;
+    border-color: #0090da;
+    border-width: 1px; 
+} 
+
+.step-navy:hover {
+    background-color: #f6be00;
+    border-color: #0090da;
+    border-width: 1px; 
+} 
+
+.step-navy:not(:disabled):not(.disabled).active {
+    color:  white;
+    background-color: #0090da;
+    border-color: transparent;
+}
+
+.step-navy:not(:disabled):not(.disabled):active:focus, .btn-primary:not(:disabled):not(.disabled).active:focus, .show > .btn-primary.dropdown-toggle:focus {
+    box-shadow: none;
+    background-color: #0090da;
+}

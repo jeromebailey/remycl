@@ -1,0 +1,20 @@
+{
+    "/js/app.js": "/js/app.js",
+    "/css/app.css": "/css/app.css",
+    "/css/all.css": "/css/all.css",
+    "/js/all.js": "/js/all.js",
+    "/css/navbar.css": "/css/navbar.css",
+    "/css/sidebar.css": "/css/sidebar.css",
+    "/css/font.css": "/css/font.css",
+    "/css/content.css": "/css/content.css",
+    "/css/button.css": "/css/button.css",
+    "/css/background.css": "/css/background.css",
+    "/css/datepicker.css": "/css/datepicker.css",
+    "/css/card.css": "/css/card.css",
+    "/css/form.css": "/css/form.css",
+    "/css/search.css": "/css/search.css",
+    "/css/tab.css": "/css/tab.css",
+    "/css/modal.css": "/css/modal.css",
+    "/css/success.css": "/css/success.css",
+    "/css/page.css": "/css/page.css"
+}

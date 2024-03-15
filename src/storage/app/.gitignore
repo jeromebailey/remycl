@@ -1,0 +1,6 @@
+*
+!public/
+!tmp_uploads/
+!framework/
+!logs/
+!.gitignore

@@ -1,0 +1,89 @@
+version: '3'
+
+networks:
+  nau:
+
+services:
+  site: 
+    build:
+      context: .
+      dockerfile: docker/nginx.Dockerfile
+    container_name: nau_nginx
+    restart: unless-stopped
+    ports:
+      - "8443:443"
+    volumes:
+      - ./src:/var/www/html:delegated
+    depends_on:
+      - php
+      - mysql
+    networks:
+      - nau
+
+  mysql:
+    image: mariadb:latest
+    container_name: nau_mysql
+    restart: unless-stopped
+    tty: true
+    ports:
+      - "8891:3306"
+    volumes:
+      - ./docker/mysql:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: nau
+      MYSQL_USER: 
+      MYSQL_PASSWORD: 
+      MYSQL_ROOT_PASSWORD: 
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - nau
+
+  php:
+    build:
+      context: .
+      dockerfile: docker/php.Dockerfile
+    container_name: nau_php
+    restart: unless-stopped
+    volumes:
+      - ./src:/var/www/html:delegated
+    networks:
+      - nau
+
+  composer:
+    build:
+      context: .
+      dockerfile: docker/composer.Dockerfile
+    container_name: nau_composer
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    depends_on:
+      - php
+    user: laravel
+    networks:
+      - nau
+    entrypoint: ['composer', '--ignore-platform-reqs']
+
+  npm:
+    image: node:current-alpine
+    container_name: nau_npm
+    volumes:
+      - ./src:/var/www/html
+    working_dir: /var/www/html
+    entrypoint: ['npm']
+
+  artisan:
+    build:
+      context: .
+      dockerfile: docker/php.Dockerfile
+    container_name: nau_artisan
+    volumes:
+      - ./src:/var/www/html:delegated
+    depends_on:
+      - mysql
+    working_dir: /var/www/html
+    user: laravel
+    entrypoint: ['php', '/var/www/html/artisan']
+    networks:
+      - nau

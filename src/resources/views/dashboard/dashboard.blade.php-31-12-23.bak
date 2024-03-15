@@ -1,0 +1,533 @@
+@extends('layouts.main')
+
+@section('head-links')
+  @include('layouts.common.meta-data')
+  <title>{{ config('app.name', 'Laravel') }}</title>
+  @include('layouts.common.css-links')
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css">
+@stop
+
+@section('content')
+
+    <div class="row">
+      <div class="col-sm-6 col-lg-3">
+        <div class="card mb-4 text-white bg-primary">
+          <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+              <div class="fs-4 fw-semibold">50 
+                  </div>
+              <div>Low Readings</div>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg class="icon">
+                  <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                </svg>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+            </div>
+          </div>
+          <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+            <canvas class="chart" id="card-chart1" height="70"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-->
+      <div class="col-sm-6 col-lg-3">
+        <div class="card mb-4 text-white bg-info">
+          <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+              <div class="fs-4 fw-semibold">830 <span class="fs-6 fw-normal"></div>
+              <div>Normal Readings</div>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg class="icon">
+                  <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                </svg>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+            </div>
+          </div>
+          <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+            <canvas class="chart" id="card-chart2" height="70"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-->
+      <div class="col-sm-6 col-lg-3">
+        <div class="card mb-4 text-white bg-warning">
+          <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+              <div class="fs-4 fw-semibold">884 <span class="fs-6 fw-normal"></div>
+              <div>High Readings</div>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg class="icon">
+                  <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                </svg>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+            </div>
+          </div>
+          <div class="c-chart-wrapper mt-3" style="height:70px;">
+            <canvas class="chart" id="card-chart3" height="70"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-->
+      <div class="col-sm-6 col-lg-3">
+        <div class="card mb-4 text-white bg-danger">
+          <div class="card-body pb-0 d-flex justify-content-between align-items-start">
+            <div>
+              <div class="fs-4 fw-semibold">333 <span class="fs-6 fw-normal"></div>
+              <div>High Critical Readings</div>
+            </div>
+            <div class="dropdown">
+              <button class="btn btn-transparent text-white p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <svg class="icon">
+                  <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                </svg>
+              </button>
+              <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Action</a><a class="dropdown-item" href="#">Another action</a><a class="dropdown-item" href="#">Something else here</a></div>
+            </div>
+          </div>
+          <div class="c-chart-wrapper mt-3 mx-3" style="height:70px;">
+            <canvas class="chart" id="card-chart4" height="70"></canvas>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-->
+    </div>
+    <!-- /.row-->
+    @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'nurse' )
+    <div class="card mb-4">
+    <div class="card-header"></div>
+      <div class="card-body">
+      <div class="table-responsive">
+              <table class="table border mb-0">
+                <thead class="table-light fw-semibold">
+                  <tr class="align-middle">
+                    <th class="text-center">
+                      <svg class="icon">
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-people')}}"></use>
+                      </svg>
+                    </th>
+                    <th>Patient Name</th>
+                    <th class="text-center">Reading</th>
+                    <th class="text-center">Pulse</th>
+                    <th class="text-center">Status</th>
+                    <th>Taken On</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @if(count($high_critical_readings) > 0)
+                    @foreach($high_critical_readings as $row)
+                      <tr class="align-middle">
+                        <td class="text-center">
+                          <div class="avatar avatar-md"><img class="avatar-img" src="{{asset('img/avatars/1.jpg')}}" alt="user@email.com"></div>
+                        </td>
+                        <td>
+                          <div><?php echo $row->first_name . ' ' . $row->last_name?></div>
+                        </td>
+                        <td class="text-center"><?php echo $row->reading?></td>
+                        <td class="text-center"><?php echo $row->pulse?></td>
+                        <td class="text-center"><button type="button" class="btn btn-danger rounded-pill">High Critical</button></td>
+                        <td>
+                        <?php echo date('F d, Y', strtotime($row->taken_on))?>
+                        </td>
+                        <td>
+                          <div class="dropdown">
+                            <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <svg class="icon">
+                                <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                              </svg>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>
+                          </div>
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif
+                </tbody>
+              </table>
+            </div>
+      </div>
+    </div>
+@endif
+    <div class="card mb-4">
+      <div class="card-body">
+        <div class="d-flex justify-content-between">
+          <div>
+            <h4 class="card-title mb-0">BP Readings</h4>
+            <div class="small text-medium-emphasis">January - July 2022</div>
+          </div>
+          <div class="btn-toolbar d-none d-md-block" role="toolbar" aria-label="Toolbar with buttons">
+            <div class="btn-group btn-group-toggle mx-3" data-coreui-toggle="buttons">
+              <input class="btn-check" id="option1" type="radio" name="options" autocomplete="off">
+              <label class="btn btn-outline-secondary"> Day</label>
+              <input class="btn-check" id="option2" type="radio" name="options" autocomplete="off" checked="">
+              <label class="btn btn-outline-secondary active"> Month</label>
+              <input class="btn-check" id="option3" type="radio" name="options" autocomplete="off">
+              <label class="btn btn-outline-secondary"> Year</label>
+            </div>
+            <button class="btn btn-primary" type="button">
+              <svg class="icon">
+                <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-cloud-download')}}"></use>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="c-chart-wrapper" style="height:300px;margin-top:40px;">
+          <canvas class="chart" id="main-chart" height="300"></canvas>
+        </div>
+      </div>
+      <div class="card-footer">
+        <div class="row row-cols-1 row-cols-md-3 text-center">
+          <div class="col mb-sm-2 mb-0">
+            <div class="text-medium-emphasis">Total</div>
+            <div class="fw-semibold"><?php echo $total_service_users?> (100%)</div>
+            <div class="progress progress-thin mt-2">
+              <div class="progress-bar bg-success" role="progressbar" style="width: 100%" aria-valuenow="<?php echo $total_service_users?>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="col mb-sm-2 mb-0">
+            <div class="text-medium-emphasis">Female</div>
+            <div class="fw-semibold"><?php echo $total_female_service_users?> (<?php echo $total_female_percentage_service_users?>%)</div>
+            <div class="progress progress-thin mt-2">
+              <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo $total_female_percentage_service_users?>%" aria-valuenow="<?php echo $total_female_service_users?>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+          <div class="col mb-sm-2 mb-0">
+            <div class="text-medium-emphasis">Male</div>
+            <div class="fw-semibold"><?php echo $total_male_service_users?> (<?php echo $total_male_percentage_service_users?>%)</div>
+            <div class="progress progress-thin mt-2">
+              <div class="progress-bar bg-warning" role="progressbar" style="width: <?php echo $total_male_percentage_service_users?>%" aria-valuenow="<?php echo $total_male_service_users?>" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.card.mb-4-->
+
+    @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'nurse' )
+    <div class="card mb-4">
+    <div class="card-header"></div>
+      <div class="card-body">
+      <div class="table-responsive">
+              <table class="table border mb-0">
+                <thead class="table-light fw-semibold">
+                  <tr class="align-middle">
+                    <th class="text-center">
+                      <svg class="icon">
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-people')}}"></use>
+                      </svg>
+                    </th>
+                    <th>Patient Name</th>
+                    <th class="text-center">Reading</th>
+                    <th class="text-center">Pulse</th>
+                    <th class="text-center">Status</th>
+                    <th>Taken On</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @if(count($high_readings) > 0)
+                    @foreach($high_readings as $row)
+                      <tr class="align-middle">
+                        <td class="text-center">
+                          <div class="avatar avatar-md"><img class="avatar-img" src="{{asset('img/avatars/1.jpg')}}" alt="user@email.com"></div>
+                        </td>
+                        <td>
+                          <div><?php echo $row->first_name . ' ' . $row->last_name?></div>
+                        </td>
+                        <td class="text-center"><?php echo $row->reading?></td>
+                        <td class="text-center"><?php echo $row->pulse?></td>
+                        <td class="text-center"><button type="button" class="btn btn-warning rounded-pill">High</button></td>
+                        <td>
+                        <?php echo date('F d, Y', strtotime($row->taken_on))?>
+                        </td>
+                        <td>
+                          <div class="dropdown">
+                            <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <svg class="icon">
+                                <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                              </svg>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end"><a class="dropdown-item" href="#">Info</a><a class="dropdown-item" href="#">Edit</a><a class="dropdown-item text-danger" href="#">Delete</a></div>
+                          </div>
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif
+                </tbody>
+              </table>
+            </div>
+      </div>
+    </div>
+@endif
+    
+    <!-- /.row-->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card mb-4">
+          @if( auth()->user()->roles[0]->slug === 'super-admin' )
+          <div class="card-header">Staff</div>
+          @endif
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-6">
+                @if(auth()->user()->roles[0]->slug === 'super-admin')
+                <div class="row">
+                  <div class="col-6">
+                    <div class="border-start border-start-4 border-start-info px-3 mb-3"><small class="text-medium-emphasis">Physicians</small>
+                      <div class="fs-5 fw-semibold"><?php echo $total_physicians?></div>
+                    </div>
+                  </div>
+                  <!-- /.col-->
+                  <div class="col-6">
+                    <div class="border-start border-start-4 border-start-danger px-3 mb-3"><small class="text-medium-emphasis">Pharmacists</small>
+                      <div class="fs-5 fw-semibold"><?php echo $total_pharmacists?></div>
+                    </div>
+                  </div>
+                  <!-- /.col-->
+                </div>
+                @endif
+                <!-- /.row-->
+                <hr class="mt-0">
+                <h5>Monthly BP and BG Readings</h5>
+                <div id="monthly-bp-bg-readings"></div>
+              </div>
+              <!-- /.col-->
+              <div class="col-sm-6">
+                @if(auth()->user()->roles[0]->slug === 'super-admin')
+                <div class="row">
+                  <div class="col-6">
+                    <div class="border-start border-start-4 border-start-warning px-3 mb-3"><small class="text-medium-emphasis">Nurses</small>
+                      <div class="fs-5 fw-semibold"><?php echo $total_nurses?></div>
+                    </div>
+                  </div>
+                  <!-- /.col-->
+                  <div class="col-6">
+                    <div class="border-start border-start-4 border-start-success px-3 mb-3"><small class="text-medium-emphasis">Admins</small>
+                      <div class="fs-5 fw-semibold"><?php echo $total_admins?></div>
+                    </div>
+                  </div>
+                  <!-- /.col-->
+                </div>
+                @endif
+                <!-- /.row-->
+                <hr class="mt-0">
+                <h5>No. of patients per service</h5>
+                <div id="rpm_service_count"></div>
+              </div>
+              <!-- /.col-->
+            </div>
+            <!-- /.row--><br>
+            <div class="table-responsive">
+              <table class="table border mb-0">
+                <thead class="table-light fw-semibold">
+                  <tr class="align-middle">
+                    <th class="text-center">
+                      <svg class="icon">
+                        <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-people')}}"></use>
+                      </svg>
+                    </th>
+                    <th>Patient Name</th>
+                    <th class="text-center">Date of birth</th>
+                    <th>Gender</th>
+                    <th>RPM Service</th>
+                    <th class="text-center">Onboarded</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @if(count($new_users) > 0)
+                    @foreach($new_users as $row)
+                      <tr class="align-middle">
+                        <td class="text-center">
+                          <div class="avatar avatar-md"><img class="avatar-img" src="{{asset('img/avatars/1.jpg')}}" alt="user@email.com"></div>
+                        </td>
+                        <td>
+                          <div><?php echo $row->first_name . ' ' . $row->last_name?></div>
+                          <div class="small text-medium-emphasis">Registered: <?php echo date('M d, Y', strtotime($row->created_at))?></div>
+                        </td>
+                        <td class="text-center">
+                        <?php echo date('F d, Y', strtotime($row->dob))?>
+                        </td>
+                        <td>
+                        <?php echo $row->gender?>
+                        </td>
+                        <td>
+                          <?php echo $row->rpm_service?>
+                        </td>
+                        <td class="text-center">
+                          <?php echo ($row->onboarded == 0) ? 'No' : 'Yes'?>
+                        </td>
+                        
+                        <td>
+                          <div class="dropdown">
+                            <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <svg class="icon">
+                                <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-options')}}"></use>
+                              </svg>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-end" >
+                              @if( $row->onboarded == 0 && $role_slug === 'nurse' || $role_slug === 'admin' )
+                                <a class="dropdown-item" href="{{route($role_slug.'/onboard-patient', ['id'=>$row->_uid])}}">Onboard Patient</a>
+                              @endif
+                              <a class="dropdown-item" href="#">Edit</a>
+                              <a class="dropdown-item text-danger" href="#">Delete</a>
+                            </div>
+                          </div>
+                        </td>
+                      </tr>
+                    @endforeach
+                  @endif
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /.col-->
+    </div>
+    <!-- /.row-->
+
+    @endsection
+
+@section('scripts')
+<script src="{{ asset('js/app.js') }}" defer></script>
+
+<script src="{{asset('vendors/@coreui/coreui/js/coreui.bundle.min.js')}}"></script>
+    <script src="{{asset('vendors/simplebar/js/simplebar.min.js')}}"></script>
+    <!-- Plugins and scripts required by this view-->
+    <script src="{{asset('vendors/chart.js/js/chart.min.js')}}"></script>
+    <script src="{{asset('vendors/@coreui/chartjs/js/coreui-chartjs.js')}}"></script>
+    <script src="{{asset('vendors/@coreui/utils/js/coreui-utils.js')}}"></script>
+    <!-- <script src="{{asset('js/main.js')}}"></script> -->
+<script
+			  src="https://code.jquery.com/jquery-3.7.0.min.js"
+			  integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+			  crossorigin="anonymous"></script>
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js"></script>
+<script>
+
+const random = (min, max) => // eslint-disable-next-line no-mixed-operators
+Math.floor(Math.random() * (max - min + 1) + min); // eslint-disable-next-line no-unused-vars
+
+const mainChart = new Chart(document.getElementById('main-chart'), {
+  type: 'line',
+  data: {
+    labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+    datasets: [{
+      label: 'Systolic',
+      backgroundColor: coreui.Utils.hexToRgba(coreui.Utils.getStyle('--cui-info'), 10),
+      borderColor: coreui.Utils.getStyle('--cui-info'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: [random(100, 140), random(100, 140), random(100, 140), random(100, 140), random(100, 140), random(100, 140), random(100, 140)],
+      fill: true
+    },
+    {
+      label: 'Diastolic',
+      borderColor: coreui.Utils.getStyle('--cui-success'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 2,
+      data: [random(40, 90), random(40, 90), random(40, 90), random(40, 90), random(40, 90), random(40, 90), random(40, 90)]
+    },
+    {
+      label: 'Systolic Border top',
+      borderColor: coreui.Utils.getStyle('--cui-warning'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 1,
+      borderDash: [8, 5],
+      data: [160, 160, 160, 160, 160, 160, 160]
+    },
+    {
+      label: 'Systolic Border bottom',
+      borderColor: coreui.Utils.getStyle('--cui-warning'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 1,
+      borderDash: [8, 5],
+      data: [140, 140, 140, 140, 140, 140, 140]
+    },
+    {
+      label: 'Diastolic Border top',
+      borderColor: coreui.Utils.getStyle('--cui-danger'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 1,
+      borderDash: [8, 5],
+      data: [90, 90, 90, 90, 90, 90, 90]
+    },
+    {
+      label: 'Diastolic Border bottom',
+      borderColor: coreui.Utils.getStyle('--cui-danger'),
+      pointHoverBackgroundColor: '#fff',
+      borderWidth: 1,
+      borderDash: [8, 5],
+      data: [60, 60, 60, 60, 60, 60, 60]
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      legend: {
+        display: false
+      }
+    },
+    scales: {
+      x: {
+        grid: {
+          drawOnChartArea: false
+        }
+      },
+      y: {
+        ticks: {
+          beginAtZero: true,
+          maxTicksLimit: 5,
+          stepSize: Math.ceil(250 / 5),
+          max: 250
+        }
+      }
+    },
+    elements: {
+      line: {
+        tension: 0.4
+      },
+      point: {
+        radius: 0,
+        hitRadius: 10,
+        hoverRadius: 4,
+        hoverBorderWidth: 3
+      }
+    }
+  }
+});
+//# sourceMappingURL=main.js.map
+
+Morris.Donut({
+  element: 'rpm_service_count',
+  data: [
+    {label: "<?php echo $bp_service_count[0]->rpm_service?>", value: <?php echo $bp_service_count[0]->amount?>},
+    {label: "<?php echo $bg_service_count[0]->rpm_service?>", value: <?php echo $bg_service_count[0]->amount?>},
+  ]
+});
+
+Morris.Bar({
+  element: 'monthly-bp-bg-readings',
+  data: [
+    <?php echo $graph_data?>
+  ],
+  xkey: 'y',
+  ykeys: ['a', 'b'],
+  labels: ['BP Readings', 'BG Readings']
+});
+    
+</script>
+
+@endsection

@@ -1,0 +1,7 @@
+.page-link {
+    color: #003a70;
+}
+
+.page-item.active .page-link  {
+    background-color: #003a70;
+}

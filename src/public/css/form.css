@@ -1,0 +1,74 @@
+input[type="text"],input[type="email"],input[type="password"],input[type="tel"],select, select.form-control {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid grey;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+    font-size: 1.26rem;
+    font-weight: 500;
+    color: grey;
+    padding: 0;
+    margin: 0;
+}
+
+input[type="text"],input[type="email"],input[type="password"],input[type="tel"]:focus,select,select.form-control:focus {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid grey; 
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0;
+}
+
+.big-checkbox {
+    width: 20px; 
+    height: 20px;
+    border-bottom: 1px solid grey;
+}
+
+.form-control::-moz-placeholder {
+    color: grey;
+    opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+    color: grey;
+    opacity: 1;
+}
+
+.form-control::placeholder {
+    color: grey;
+    opacity: 1;
+}
+
+.form-control{
+    -webkit-appearance:none; 
+    -moz-appearance: none;
+    -ms-appearance: none;
+    -o-appearance: none;
+    appearance: none;
+}
+
+label.wrap {
+    overflow: hidden;
+    height: 50px;
+    position: relative;
+    display: block;
+}
+
+@media (max-width: 768px) {
+        label.wrap:after {
+        display: none;   
+    }
+}
+
+.form-control-borderless {
+    border: none;
+}
+
+.form-control-borderless:hover, .form-control-borderless:active, .form-control-borderless:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}

@@ -1,0 +1,8 @@
+/*.code-workspace
+/docker/mysql
+/docker/nginx/*.key
+/src/.env
+docker-compose.yml
+/.vscode
+*.log
+*.DS_Store

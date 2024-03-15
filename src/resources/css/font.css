@@ -1,0 +1,53 @@
+.text-xs-400-navy-blue {
+    font-size: 0.86rem;
+    font-weight: 400;
+    color:  grey;
+}
+
+.text-sm-500-light-blue {
+    font-size: 0.96rem;
+    font-weight: 500;
+    color: #0090da;
+}
+
+.text-xl-400-navy-blue {
+    font-size: 1.26rem;
+    font-weight: 400;
+    color: grey;
+}
+
+.text-xl-500-navy-blue {
+    font-size: 1.26rem;
+    font-weight: 500;
+    color: grey;
+}
+
+.text-xl-600-navy-blue {
+    font-size: 1.26rem;
+    font-weight: 600;
+    color: grey;
+}
+
+.text-lg-500-navy-blue {
+    font-size: 1.16rem;
+    font-weight: 500;
+    color: Grey;
+}
+
+.text-xxl-600-green {
+    font-size: 6.0rem;
+    font-weight: 600;
+    color: green;
+}
+
+h3 {
+    font-size: 1.57rem;
+    font-weight: 500;
+    color: grey;
+}
+
+h4 {
+    font-size: 1.35rem;
+    font-weight: 500;
+    color: grey;
+}

@@ -1,0 +1,70 @@
+#app-contentx {
+  position: relative;
+  top: 100px;
+  left: 0px;
+  margin-left: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.bg-navy {
+  background: #003a70;
+}
+
+.bg-light-blue {
+  background-color: #ffffff;
+}
+
+.vr {
+  border-left: 2px solid #cacaca;
+  height: 40px;
+}
+
+@media (max-width: 767px) {
+  .card {
+    margin-left: 50px;
+    margin-top: 30%;
+    margin-bottom: 10%;
+    background-color: #f0f8ff;
+    left: 10%;
+  }
+}
+
+.card {
+  margin-top: 30%;
+  margin-bottom: 10%;
+  background-color: #f0f8ff;
+}
+
+.carousel-control-next {
+  margin-right: 40px;
+}
+
+.carousel-control-next {
+  margin-right: 40px;
+}
+
+.carousel-control-next {
+  margin-right: 40px;
+}
+
+#carousel-1 {
+  width: 90vw;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+#app-contentx {
+  top: 90px;
+  width: 100vw;
+  height: 100vh;
+}
+
+#sig-canvas {
+  border: 2px dotted #CCCCCC;
+  border-radius: 15px;
+  cursor: crosshair;
+  color: black;
+}

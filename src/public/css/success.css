@@ -1,0 +1,29 @@
+.success-div {
+    max-width:600px; 
+    min-width:200px; 
+    width: 300px; 
+    background-color:white;
+    border-color: #787878;
+    border-radius: 50px; 
+}
+
+@media (min-width: 767px) {
+    .success-div {
+        width: 600px; 
+    }
+}
+
+.success-input {
+    position: relative;
+    top: calc(20% - 40px);
+    left: -40px;
+}
+
+@media (max-width: 767px) {
+    .success-input {
+        position: relative;
+        top: calc(15% - 40px);
+        width: 90%;
+        left: 12px;
+    }
+}
