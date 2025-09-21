@@ -1,0 +1,18 @@
+# Ignore logs, keys, certs, backups, etc.
+*.log
+*.key
+*.csr
+*.bak
+*.env
+*.yml
+*.conf
+*.cfg
+
+# Ignore Git folder
+.git/
+
+# Ignore specific config file
+src/config/app.php
+
+# Ignore everything in the docker/mysql folder
+docker/mysql/

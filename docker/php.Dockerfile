@@ -11,12 +11,12 @@ ADD ./docker/php/php.ini "$PHP_INI_DIR/php.ini"
 RUN addgroup -g 1002 laravel && adduser -G laravel -g laravel -s /bin/sh -D laravel
 RUN mkdir -p /var/www/html 
 RUN chown laravel:laravel /var/www/html
-RUN apk update && apk add libxml2-dev && apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg libjpeg-turbo-dev zlib php-soap php-gd php-pdo_mysql php-opcache
+RUN apk update && apk add libxml2-dev && apk add --no-cache freetype libpng libjpeg-turbo freetype-dev libpng-dev libjpeg libzip-dev libjpeg-turbo-dev zlib php-soap php-gd php-pdo_mysql php-opcache
 RUN docker-php-ext-configure gd --with-freetype --with-jpeg
-RUN docker-php-ext-install soap gd pdo_mysql opcache mysqli
+RUN docker-php-ext-install soap gd pdo_mysql opcache mysqli zip
 #RUN apk add --no-cache php8-soap php8-gd php8-pdo_mysql php8-opcache
 
-COPY src/laravel /etc/crontabs
+COPY src/laravel /etc/crontabs/laravel
 
 COPY src/start.sh /var/www/html
 

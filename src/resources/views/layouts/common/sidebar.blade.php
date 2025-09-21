@@ -23,27 +23,6 @@ $dashboardRoute = User::determineDashboardFromRole($slug);
           <svg class="nav-icon">
             <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-speedometer')}}"></use>
           </svg> My Dashboard</a></li>
-
-      <!-- <li class="nav-item"><a class="nav-link" href="">
-          <svg class="nav-icon">
-            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-paper-plane"></use>
-          </svg> My Days Allotment</a>
-      </li> -->
-
-      <!-- <li class="nav-item"><a class="nav-link" href="">
-          <svg class="nav-icon">
-            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-paper-plane"></use>
-          </svg> My Requests</a>
-      </li> -->
-
-      <!-- <li class="nav-item"><a class="nav-link" href="">
-          <svg class="nav-icon">
-            <use xlink:href="vendors/@coreui/icons/svg/free.svg#cil-paper-plane"></use>
-          </svg> Make Leave Request</a>
-      </li> -->
-
-     
-
       
       @can('see-clients-menu')
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
@@ -51,6 +30,9 @@ $dashboardRoute = User::determineDashboardFromRole($slug);
             <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-healing')}}"></use>
           </svg> Clients</a>
         <ul class="nav-group-items">
+        @can('import-clients')
+            <li class="nav-item"><a class="nav-link" href="{{route($slugToUse.'/import-clients')}}"><span class="nav-icon"></span> Import Clients</a></li>
+          @endcan
           @can('view-all-clients')
             @if( $slug === 'sales-exec' )
               <li class="nav-item"><a class="nav-link" href="{{route('sales-exec/clients')}}"><span class="nav-icon"></span> My Clients</a></li>
@@ -62,7 +44,7 @@ $dashboardRoute = User::determineDashboardFromRole($slug);
       </li>
       @endcan
 
-      @can('see-clients-menu')
+      {{-- @can('see-clients-menu')
       <li class="nav-group"><a class="nav-link nav-group-toggle" href="#">
           <svg class="nav-icon">
             <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-healing')}}"></use>
@@ -77,7 +59,7 @@ $dashboardRoute = User::determineDashboardFromRole($slug);
           @endcan
         </ul>
       </li>
-      @endcan
+      @endcan --}}
 
       @if( (auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'sales-exec') && auth()->user()->can('view-reports'))
       <li class="nav-item"><a class="nav-link" href="{{route($slugToUse.'/reports')}}">

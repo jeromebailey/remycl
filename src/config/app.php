@@ -183,6 +183,8 @@ return [
 
         App\Providers\PermissionServiceProvider::class,
 
+        Maatwebsite\Excel\ExcelServiceProvider::class,
+
     ],
 
     /*
@@ -234,7 +236,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-        'SoapWrapper' => Artisaninweb\SoapWrapper\Facade\SoapWrapper::class,
+        //'SoapWrapper' => Artisaninweb\SoapWrapper\Facade\SoapWrapper::class,
+        'Excel' => Maatwebsite\Excel\Facades\Excel::class,
         //'PDF' => Barryvdh\DomPDF\Facade::class,
 
     ],

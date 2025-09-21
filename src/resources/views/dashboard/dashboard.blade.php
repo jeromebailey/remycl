@@ -25,8 +25,6 @@
                     <th>First Name</th>
                     <th>Last Name</th>
                     <th class="">Policy Type</th>
-                    <th class="">Policy Status</th>
-                    <th class="">Expired</th>
                     <th></th>
                   </tr>
                 </thead>
@@ -44,12 +42,6 @@
                           <?php echo $row->last_name?>
                         </td>
                         <td class=""><?php echo $row->policy_type?></td>
-                        <td class="">
-                          <button class="btn btn-danger" style="color: #fff">Expired</button>
-                        </td>
-                        <td>
-                        <?php echo date('F d, Y', strtotime($row->policy_expires_at))?>
-                        </td>
                         <td>
                           <div class="dropdown">
                             <button class="btn btn-transparent p-0" type="button" data-coreui-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

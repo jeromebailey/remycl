@@ -18,16 +18,19 @@
                 <div class="card-body">
                     <ol style="column-count: 3;">
                         
-                        @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'nurse' )
+                        @if( auth()->user()->roles[0]->slug === 'super-admin' )
                             <li><a href="{{route($role_slug.'/reports/all-clients')}}">All Clients</a></li>
                         @endif
-                        @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'nurse' )
+                        @if( auth()->user()->roles[0]->slug === 'super-admin' )
+                            <li><a href="{{route($role_slug.'/reports/sms-sent-by-agent')}}">SMS Sent by an Agent</a></li>
+                        @endif
+                        @if( auth()->user()->roles[0]->slug === 'super-admin' )
                             <li><a href="{{route($role_slug.'/reports/expired-policies')}}">Expired Policies</a></li>
                         @endif
-                        @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'nurse' )
+                        @if( auth()->user()->roles[0]->slug === 'super-admin' )
                             <li><a href="{{route($role_slug.'/reports/policies-expiring')}}">Policies Expiring</a></li>
                         @endif
-                        @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'nurse' )
+                        @if( auth()->user()->roles[0]->slug === 'super-admin' )
                             <li><a href="{{route($role_slug.'/reports/policies-expiring')}}">Find Premium Payments</a></li>
                         @endif
                     </ol>

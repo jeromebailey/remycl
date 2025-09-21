@@ -118,4 +118,12 @@ class User extends Authenticatable
             return $roleSlug;
         }
     }
+
+    public static function getAllAgents($roleId)
+    {
+        return DB::select("select u._uid id, u.first_name, u.last_name
+        from users u
+        inner join roles_users ru on ru.user_id = u.id
+        where ru.role_id = ?", [$roleId]);
+    }
 }

@@ -60,35 +60,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group row mt-3">
-                                <label for="gender" class="col-md-3 col-form-label">Policy Start Date:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control-plaintext" id="dob" name="dob" value="{{ date('M d, Y', strtotime($client_details->policy_start_at))}}" autocomplete="off">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="form-group row mt-3">
-                                <label for="dob" class="col-md-3 col-form-label">Policy Expires:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control-plaintext" id="dob" name="dob" value="{{ date('M d, Y', strtotime($client_details->policy_expires_at))}}" autocomplete="off">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group row mt-3">
-                                <label for="first_name" class="col-md-3 col-form-label">Policy Amt:</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control-plaintext" readonly id="first_name" name="first_name" value="{{number_format($client_details->policy_amount, 2)}}" autocomplete="off" required>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <hr>
@@ -101,15 +72,6 @@
                                 <label for="primary_phone_no" class="col-md-4 col-form-label">Primary Phone No.:</label>
                                 <div class="col-md-8">
                                     <input class="form-control-plaintext" id="primary_phone_no" name="primary_phone_no" value="{{$client_details->phone_no}}" autocomplete="off" type="tel" required />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-6">
-                            <div class="form-group row mt-3">
-                                <label for="email_address" class="col-md-4 col-form-label">Email Address:</label>
-                                <div class="col-md-8">
-                                    <input class="form-control-plaintext" id="email_address" name="email_address" value="{{$client_details->email_address}}" autocomplete="off" type="email" />
                                 </div>
                             </div>
                         </div>

@@ -30,6 +30,11 @@ class Kernel extends ConsoleKernel
         // $schedule->call(function () {
         //     Log::info("Scheduled task run successfully.");
         // })->everyMinute();
+
+        $schedule->command('sms:send')->everyMinute();
+        // $schedule->call(function () {
+        //     Log::info("Scheduled task run successfully.");
+        // })->everyMinute();
     }
 
     /**
