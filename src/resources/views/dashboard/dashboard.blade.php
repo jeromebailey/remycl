@@ -11,7 +11,7 @@
 
     
     <!-- /.row-->
-    @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'sales-exec' )
+    @if( auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'agent' )
     <div class="card mb-4">
     <div class="card-header">Expired Policies</div>
       <div class="card-body">

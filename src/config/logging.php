@@ -37,8 +37,21 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'promtail'],
             'ignore_exceptions' => false,
+        ],
+
+        'promtail' => [
+            'driver'  => 'monolog',
+            'handler' => Monolog\Handler\SocketHandler::class,
+            'with'    => [
+                'connectionString' => 'tcp://' . env('PROMTAIL_HOST') . ':' . env('PROMTAIL_PORT'),
+            ],
+            'formatter' => Monolog\Formatter\LineFormatter::class,
+            'formatter_with' => [
+                'format' => "app_name=remycl level=%level_name% message=%message% context=%context% extra=%extra%\n",
+                'allowInlineLineBreaks' => true,
+            ],
         ],
 
         'single' => [

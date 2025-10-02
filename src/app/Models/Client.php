@@ -68,11 +68,11 @@ class Client extends Model
                 FROM clients c");
                 break;
 
-            case 'sales-exec':
+            case 'agent':
                 $id = Auth::user()->id;
                 return DB::select("SELECT c._uid id, c.first_name, c.last_name, c.policy_type, c.phone_no, c.policy_no, c.policy_status, c.policy_expiration_date
                 FROM clients c
-                and c.id in (select client_id from user_clients where user_id = ?);", [$id]);
+                where c.id in (select client_id from user_clients where user_id = ?);", [$id]);
                 break;
         }
     }

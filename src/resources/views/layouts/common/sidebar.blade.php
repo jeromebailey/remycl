@@ -34,8 +34,8 @@ $dashboardRoute = User::determineDashboardFromRole($slug);
             <li class="nav-item"><a class="nav-link" href="{{route($slugToUse.'/import-clients')}}"><span class="nav-icon"></span> Import Clients</a></li>
           @endcan
           @can('view-all-clients')
-            @if( $slug === 'sales-exec' )
-              <li class="nav-item"><a class="nav-link" href="{{route('sales-exec/clients')}}"><span class="nav-icon"></span> My Clients</a></li>
+            @if( $slug === 'agent' )
+              <li class="nav-item"><a class="nav-link" href="{{route('agent/clients')}}"><span class="nav-icon"></span> My Clients</a></li>
             @elseif( $slug === 'super-admin' )
               <li class="nav-item"><a class="nav-link" href="{{route($slugToUse.'/clients')}}"><span class="nav-icon"></span> All Clients</a></li>
             @endif
@@ -51,8 +51,8 @@ $dashboardRoute = User::determineDashboardFromRole($slug);
           </svg> Payments</a>
         <ul class="nav-group-items">
           @can('view-all-clients')
-            @if( $slug === 'sales-exec' )
-              <li class="nav-item"><a class="nav-link" href="{{route('sales-exec/clients')}}"><span class="nav-icon"></span> My Clients</a></li>
+            @if( $slug === 'agent' )
+              <li class="nav-item"><a class="nav-link" href="{{route('agent/clients')}}"><span class="nav-icon"></span> My Clients</a></li>
             @elseif( $slug === 'super-admin' )
               <li class="nav-item"><a class="nav-link" href="{{route($slugToUse.'/clients')}}"><span class="nav-icon"></span> All Clients</a></li>
             @endif
@@ -61,7 +61,7 @@ $dashboardRoute = User::determineDashboardFromRole($slug);
       </li>
       @endcan --}}
 
-      @if( (auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'sales-exec') && auth()->user()->can('view-reports'))
+      @if( (auth()->user()->roles[0]->slug === 'super-admin' || auth()->user()->roles[0]->slug === 'agent') && auth()->user()->can('view-reports'))
       <li class="nav-item"><a class="nav-link" href="{{route($slugToUse.'/reports')}}">
           <svg class="nav-icon">
             <use xlink:href="{{asset('vendors/@coreui/icons/svg/free.svg#cil-bell-exclamation')}}"></use>

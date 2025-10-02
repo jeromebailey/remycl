@@ -112,7 +112,7 @@ class ReportController extends Controller
                 $smsSent = SMSHelper::getAllSMSSentByAnAgent(null, null);
                 break;
 
-            // case 'sales-executive':
+            // case 'agent':
             //     $patients = Patient::getPhysiciansPatientsDDL(Auth::user()->id);
             //     break;
         }
@@ -171,7 +171,7 @@ class ReportController extends Controller
             case 'admin':
                 // Admin can see all SMS logs
                 break;
-            case 'sales-executive':
+            case 'agent':
                 // Sales executive can only see their own SMS
                 $query->where('sms_logs.sent_by', Auth::user()->id);
                 break;
@@ -243,7 +243,7 @@ class ReportController extends Controller
         switch($roleSlug) {
             case 'admin':
                 break;
-            case 'sales-executive':
+            case 'agent':
                 $summaryQuery->where('sms_logs.sent_by', Auth::user()->id);
                 break;
             default:
@@ -278,7 +278,7 @@ class ReportController extends Controller
         $agents = collect();
         if ($roleSlug == 'admin') {
             // $agents = User::whereHas('roles', function($q) {
-            //     $q->whereIn('name', ['sales-executive', 'admin']);
+            //     $q->whereIn('name', ['agent', 'admin']);
             // })->select('id', 'first_name', 'last_name')->get();
             $agents = User::getAllAgents(1);
         }

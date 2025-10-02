@@ -115,6 +115,7 @@ class ComposerStaticInitb2c2113113af9a6a91a782f4545c4a0c
             'Psr\\Container\\' => 14,
             'Psr\\Clock\\' => 10,
             'Psr\\Cache\\' => 10,
+            'Prometheus\\' => 11,
             'PhpParser\\' => 10,
             'PhpOption\\' => 10,
             'PhpOffice\\PhpSpreadsheet\\' => 25,
@@ -411,6 +412,10 @@ class ComposerStaticInitb2c2113113af9a6a91a782f4545c4a0c
         'Psr\\Cache\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
+        ),
+        'Prometheus\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus',
         ),
         'PhpParser\\' => 
         array (
@@ -6526,6 +6531,29 @@ class ComposerStaticInitb2c2113113af9a6a91a782f4545c4a0c
         'PhpParser\\PrettyPrinterAbstract' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinterAbstract.php',
         'PhpParser\\PrettyPrinter\\Standard' => __DIR__ . '/..' . '/nikic/php-parser/lib/PhpParser/PrettyPrinter/Standard.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
+        'Prometheus\\Collector' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Collector.php',
+        'Prometheus\\CollectorRegistry' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/CollectorRegistry.php',
+        'Prometheus\\Counter' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Counter.php',
+        'Prometheus\\Exception\\MetricJsonException' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Exception/MetricJsonException.php',
+        'Prometheus\\Exception\\MetricNotFoundException' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Exception/MetricNotFoundException.php',
+        'Prometheus\\Exception\\MetricsRegistrationException' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Exception/MetricsRegistrationException.php',
+        'Prometheus\\Exception\\StorageException' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Exception/StorageException.php',
+        'Prometheus\\Gauge' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Gauge.php',
+        'Prometheus\\Histogram' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Histogram.php',
+        'Prometheus\\Math' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Math.php',
+        'Prometheus\\MetricFamilySamples' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/MetricFamilySamples.php',
+        'Prometheus\\RegistryInterface' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/RegistryInterface.php',
+        'Prometheus\\RenderTextFormat' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/RenderTextFormat.php',
+        'Prometheus\\RendererInterface' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/RendererInterface.php',
+        'Prometheus\\Sample' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Sample.php',
+        'Prometheus\\Storage\\APC' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Storage/APC.php',
+        'Prometheus\\Storage\\APCng' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Storage/APCng.php',
+        'Prometheus\\Storage\\Adapter' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Storage/Adapter.php',
+        'Prometheus\\Storage\\InMemory' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Storage/InMemory.php',
+        'Prometheus\\Storage\\PDO' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Storage/PDO.php',
+        'Prometheus\\Storage\\Redis' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Storage/Redis.php',
+        'Prometheus\\Storage\\RedisNg' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Storage/RedisNg.php',
+        'Prometheus\\Summary' => __DIR__ . '/..' . '/promphp/prometheus_client_php/src/Prometheus/Summary.php',
         'Psr\\Cache\\CacheException' => __DIR__ . '/..' . '/psr/cache/src/CacheException.php',
         'Psr\\Cache\\CacheItemInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemInterface.php',
         'Psr\\Cache\\CacheItemPoolInterface' => __DIR__ . '/..' . '/psr/cache/src/CacheItemPoolInterface.php',

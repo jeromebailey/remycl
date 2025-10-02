@@ -65,7 +65,7 @@ class Client extends Model
                 WHERE policy_expires_at < CURDATE();");
                 break;
 
-            case 'sales-exec':
+            case 'agent':
                 $id = Auth::user()->id;
                 return DB::select("SELECT c._uid id, c.first_name, c.last_name, pt.policy_type, c.phone_no, c.policy_expires_at, c.policy_no
                 FROM clients c

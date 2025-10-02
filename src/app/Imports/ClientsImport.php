@@ -20,27 +20,31 @@ class ClientsImport implements ToModel, WithHeadingRow
     */
     public function model(array $row)
     {
-        $client = new Client([
-            'user_id' => auth()->user()->id,
-            'first_name' => $row['first_name'] ?? null,
-            'last_name' => $row['last_name'] ?? null,
-            'phone_no' => $row['phone_no'] ?? null,
-            'policy_type' => $row['policy_type'] ?? null,
-            'policy_no' => $row['policy_no'] ?? null,
-            'policy_status' => $row['policy_status'] ?? null,
-            'policy_expiration_date' => $this->parseExcelDate($row['policy_expiration_date'] ?? null),
-        ]);
+        // if( !empty($row) ){
+        //     dd($row['first_name']);
+            $client = new Client([
+                'user_id' => auth()->user()->id,
+                'first_name' => $row['first_name'] ?? null,
+                'last_name' => $row['last_name'] ?? null,
+                'phone_no' => $row['phone_no'] ?? null,
+                'policy_type' => $row['policy_type'] ?? null,
+                'policy_no' => $row['policy_no'] ?? null,
+                'policy_status' => $row['policy_status'] ?? null,
+                'policy_expiration_date' => $this->parseExcelDate($row['policy_expiration_date'] ?? null),
+            ]);
 
-        // Save client so we get ID
-        $client->save();
-        Log::info('Imported client: ' . json_encode($client));
+            // Save client so we get ID
+            $client->save();
+            Log::info('Imported client: ' . json_encode($client));
+            
+            // Create SMS schedules if expiration exists
+            if ($client->policy_expiration_date) {
+                $this->handleSmsScheduling($client);
+            }
+
+            return $client;
+        //}
         
-        // Create SMS schedules if expiration exists
-        if ($client->policy_expiration_date) {
-            $this->handleSmsScheduling($client);
-        }
-
-        return $client;
     }
 
     private function parseExcelDate($value)

@@ -60,7 +60,7 @@ class ClientController extends Controller
                 return view('clients.list-clients', $data);
                 break;
 
-            case 'sales-exec':
+            case 'agent':
                     $allClients = Client::getAllClientsByUserId($id);
     
                     $data = array(

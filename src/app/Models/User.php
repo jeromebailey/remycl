@@ -71,8 +71,8 @@ class User extends Authenticatable
                     $dashboard_route = 'admin/my-dashboard';
                     break;
     
-                case 'physician':
-                    $dashboard_route = 'physician/my-dashboard';
+                case 'agent':
+                    $dashboard_route = 'agent/my-dashboard';
                         break;
 
                 default:

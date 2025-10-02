@@ -39,7 +39,7 @@ LOCK TABLES `roles` WRITE;
 
 INSERT INTO `roles` (`id`, `role_name`, `slug`, `created_at`, `updated_at`)
 VALUES
-	(1,'Sales Executive','sales-executive','2023-06-07 16:02:16','2023-06-07 16:02:16'),
+	(1,'Sales Executive','agent','2023-06-07 16:02:16','2023-06-07 16:02:16'),
 	(2,'Super Administrator','super-admin','2023-06-07 16:02:16','2023-06-07 16:02:16');
 
 /*!40000 ALTER TABLE `roles` ENABLE KEYS */;

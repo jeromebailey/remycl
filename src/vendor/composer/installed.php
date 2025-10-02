@@ -157,6 +157,12 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'endclothing/prometheus_client_php' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
         'ezyang/htmlpurifier' => array(
             'pretty_version' => 'v4.18.0',
             'version' => '4.18.0.0',
@@ -454,6 +460,12 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'jimdo/prometheus_client_php' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -567,6 +579,12 @@
             'install_path' => __DIR__ . '/../league/mime-type-detection',
             'aliases' => array(),
             'dev_requirement' => false,
+        ),
+        'lkaemmerling/prometheus_client_php' => array(
+            'dev_requirement' => false,
+            'replaced' => array(
+                0 => '*',
+            ),
         ),
         'maatwebsite/excel' => array(
             'pretty_version' => '3.1.66',
@@ -798,6 +816,15 @@
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'promphp/prometheus_client_php' => array(
+            'pretty_version' => 'v2.14.1',
+            'version' => '2.14.1.0',
+            'reference' => 'a283aea8269287dc35313a0055480d950c59ac1f',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../promphp/prometheus_client_php',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'psr/cache' => array(
             'pretty_version' => '3.0.0',

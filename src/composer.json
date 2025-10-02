@@ -19,6 +19,7 @@
         "laravel/tinker": "^2.5",
         "laravel/ui": "^4.0",
         "maatwebsite/excel": "^3.1",
+        "promphp/prometheus_client_php": "*",
         "twilio/sdk": "^6.28"
     },
     "require-dev": {
