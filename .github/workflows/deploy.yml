@@ -29,7 +29,7 @@ jobs:
             docker-compose up -d --build
             
             # Run Laravel migrations and cache
-            docker-compose exec -T remycl_php php artisan migrate --force
-            docker-compose exec -T remycl_php php artisan config:cache
-            docker-compose exec -T remycl_php php artisan route:cache
-            docker-compose exec -T remycl_php php artisan view:cache
+            docker-compose exec -T php php artisan migrate --force
+            docker-compose exec -T php php artisan config:cache
+            docker-compose exec -T php php artisan route:cache
+            docker-compose exec -T php php artisan view:cache
