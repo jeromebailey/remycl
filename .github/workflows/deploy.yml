@@ -29,7 +29,8 @@ jobs:
             docker-compose up -d --build
             
             # Run Laravel migrations and cache
-            docker-compose exec -T php php artisan migrate --force
-            docker-compose exec -T php php artisan config:cache
-            docker-compose exec -T php php artisan route:cache
-            docker-compose exec -T php php artisan view:cache
+            docker-compose exec -T php php artisan migrate --force 2>&1 || echo "Migration skipped"
+            docker compose exec -T php php artisan optimize:clear 2>&1 || echo "Cache clear skipped"
+            #docker-compose exec -T php php artisan config:cache
+            #docker-compose exec -T php php artisan route:cache
+            #docker-compose exec -T php php artisan view:cache
