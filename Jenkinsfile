@@ -70,7 +70,7 @@ pipeline {
                 script {
                     echo "Running application tests..."
                     sh """
-                        docker run --rm ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} php artisan test
+                        docker run --rm ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} php php artisan test
                     """
                 }
             }
