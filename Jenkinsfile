@@ -1,25 +1,4 @@
 // Jenkinsfile
-// Helper functions must be defined BEFORE the pipeline
-def getServerURL(env) {
-    def servers = ['DEV-AWS': '18.132.154.138', 'PROD': 'prod-idr.egov.ky']
-    return servers[env]
-}
-
-def getFullServerProjectPath(env) {
-    def servers = ['DEV-AWS': '/home/ubuntu/remycl', 'PROD': '/opt/Docker/idr']
-    return servers[env]
-}
-
-def getServerFolderName(projectpath) {
-    def sections = projectpath.split('/')
-    return sections.last()
-}
-
-def getServerUsername(env) {
-    def servers = ['DEV-AWS': 'ubuntu', 'PROD': 'ubuntu']
-    return servers[env]
-}
-
 pipeline {
     agent any
     
@@ -50,17 +29,22 @@ pipeline {
         stage('Checkout') {
             steps {
                 script {
-                    // Set dynamic variables here instead of environment block
-                    env.SERVER = getServerURL(params.ENVIRONMENT)
-                    env.PROJECT_PATH = getFullServerProjectPath(params.ENVIRONMENT)
-                    env.FOLDER_NAME = getServerFolderName(env.PROJECT_PATH)
-                    env.USERNAME = getServerUsername(params.ENVIRONMENT)
+                    // Set dynamic variables
+                    def serverMap = ['DEV-AWS': '18.132.154.138', 'PROD': 'prod-idr.egov.ky']
+                    def pathMap = ['DEV-AWS': '/home/ubuntu/remycl', 'PROD': '/opt/Docker/idr']
+                    def userMap = ['DEV-AWS': 'ubuntu', 'PROD': 'ubuntu']
                     
+                    env.SERVER = serverMap[params.ENVIRONMENT]
+                    env.PROJECT_PATH = pathMap[params.ENVIRONMENT]
+                    env.USERNAME = userMap[params.ENVIRONMENT]
+                    
+                    echo "========================================="
                     echo "Building branch: ${params.BRANCH}"
                     echo "Target environment: ${params.ENVIRONMENT}"
                     echo "Server: ${env.SERVER}"
                     echo "Project Path: ${env.PROJECT_PATH}"
                     echo "Username: ${env.USERNAME}"
+                    echo "========================================="
                 }
                 
                 git branch: "${params.BRANCH}",
