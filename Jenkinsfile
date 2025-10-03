@@ -22,7 +22,7 @@ pipeline {
         
         // SSH credentials for deployment servers
         TEST_SERVER_CREDENTIALS = credentials('test-server-ssh')
-        PROD_SERVER_CREDENTIALS = credentials('prod-server-ssh')
+        //PROD_SERVER_CREDENTIALS = credentials('prod-server-ssh')
     }
     
     stages {
