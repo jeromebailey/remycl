@@ -181,7 +181,7 @@ pipeline {
             // Clean up Docker images on Jenkins server
             sh """
                 docker rmi ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} || true
-                docker system prune -f
+                docker system prune -f || true
             """
         }
     }
