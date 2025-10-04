@@ -17,7 +17,7 @@ pipeline {
     
     environment {
         DOCKER_HUB_CREDENTIALS = credentials('dockerhub-credentials')
-        DOCKER_IMAGE_NAME = 'jeromebailey/remycl'
+        DOCKER_IMAGE_NAME = 'jabailey1/remycl'
         DOCKER_IMAGE_TAG = "${env.BUILD_NUMBER}"
         
         // SSH credentials for deployment servers
