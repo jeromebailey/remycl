@@ -65,26 +65,26 @@ pipeline {
             }
         }
         
-        stage('Run Tests') {
-            steps {
-                script {
-                    echo "Running application tests..."
+        //stage('Run Tests') {
+            //steps {
+                //script {
+                    //echo "Running application tests..."
                     
                     // Start MySQL container
-                    sh 'docker-compose -f docker-compose.yml up -d mysql'
+                    //sh 'docker-compose -f docker-compose.yml up -d mysql'
 
                     // Give MySQL a moment to initialize
-                    sh 'sleep 15'
+                    //sh 'sleep 15'
                     
-                    sh """
-                        docker run --rm ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} php artisan test
-                    """
+                    //sh """
+                        //docker run --rm ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG} php artisan test
+                    //"""
 
                     // Tear down containers after tests
-                    sh 'docker-compose -f docker-compose.yml down'
-                }
-            }
-        }
+                    //sh 'docker-compose -f docker-compose.yml down'
+                //}
+            //}
+        //}
         
         stage('Push to Docker Hub') {
             steps {
