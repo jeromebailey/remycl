@@ -112,41 +112,41 @@ pipeline {
                     // Deploy using SSH
                     sshagent(credentials: [sshCredentialsId]) {
                         sh """
-                            ssh -o StrictHostKeyChecking=no ${env.USERNAME}@${env.SERVER} '
-                                cd ${env.PROJECT_PATH} &&
-                                
-                                # Update docker-compose.yml with new image tag
-                                sed -i "s|image: \${DOCKER_IMAGE_NAME}:.*|image: \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}|g" docker-compose.yml &&
-                                
-                                # Pull the latest image
-                                docker-compose pull &&
+                    ssh -o StrictHostKeyChecking=no ${env.USERNAME}@${env.SERVER} '
+                        cd ${env.PROJECT_PATH} &&
 
-                                # Force remove any previous remycl_* containers
-                                docker rm -f $(docker ps -aq --filter "name=remycl_") 2>/dev/null || true
-                                
-                                # Stop and remove old containers
-                                docker-compose -p remycl_app down --remove-orphans &&
-                                
-                                # Start the application
-                                docker-compose -p remycl_app up -d --build &&
-                                
-                                # Run migrations
-                                docker-compose -p remycl_app exec -T php php artisan migrate --force &&
-                                
-                                # Clear cache
-                                docker-compose -p remycl_app exec -T php php artisan cache:clear &&
-                                docker-compose -p remycl_app exec -T php php artisan config:clear &&
-                                docker-compose -p remycl_app exec -T php php artisan route:clear &&
-                                docker-compose -p remycl_app exec -T php php artisan view:clear &&
-                                
-                                # Optimize for production
-                                docker-compose -p remycl_app exec -T php php artisan config:cache &&
-                                docker-compose -p remycl_app exec -T php php artisan route:cache &&
-                                docker-compose -p remycl_app exec -T php php artisan view:cache &&
-                                
-                                echo "Deployment completed successfully!"
-                            '
-                        """
+                        # Update docker-compose.yml with new image tag
+                        sed -i "s|image: \${DOCKER_IMAGE_NAME}:.*|image: \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}|g" docker-compose.yml &&
+
+                        # Pull the latest image
+                        docker-compose pull &&
+
+                        # Force remove any previous remycl_* containers
+                        docker rm -f \$(docker ps -aq --filter "name=remycl_") 2>/dev/null || true &&
+
+                        # Stop and remove old containers
+                        docker-compose -p remycl_app down --remove-orphans &&
+
+                        # Start the application
+                        docker-compose -p remycl_app up -d --build &&
+
+                        # Run migrations
+                        docker-compose -p remycl_app exec -T php php artisan migrate --force &&
+
+                        # Clear cache
+                        docker-compose -p remycl_app exec -T php php artisan cache:clear &&
+                        docker-compose -p remycl_app exec -T php php artisan config:clear &&
+                        docker-compose -p remycl_app exec -T php php artisan route:clear &&
+                        docker-compose -p remycl_app exec -T php php artisan view:clear &&
+
+                        # Optimize for production
+                        docker-compose -p remycl_app exec -T php php artisan config:cache &&
+                        docker-compose -p remycl_app exec -T php php artisan route:cache &&
+                        docker-compose -p remycl_app exec -T php php artisan view:cache &&
+
+                        echo "Deployment completed successfully!"
+                    '
+                """
                     }
                 }
             }
