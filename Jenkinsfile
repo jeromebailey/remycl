@@ -128,18 +128,18 @@ pipeline {
                                 docker-compose -p remycl_app up -d --build &&
                                 
                                 # Run migrations
-                                docker-compose -p remycl_app exec -T app php artisan migrate --force &&
+                                docker-compose -p remycl_app exec -T php php artisan migrate --force &&
                                 
                                 # Clear cache
-                                docker-compose -p remycl_app exec -T app php artisan cache:clear &&
-                                docker-compose -p remycl_app exec -T app php artisan config:clear &&
-                                docker-compose -p remycl_app exec -T app php artisan route:clear &&
-                                docker-compose -p remycl_app exec -T app php artisan view:clear &&
+                                docker-compose -p remycl_app exec -T php php artisan cache:clear &&
+                                docker-compose -p remycl_app exec -T php php artisan config:clear &&
+                                docker-compose -p remycl_app exec -T php php artisan route:clear &&
+                                docker-compose -p remycl_app exec -T php php artisan view:clear &&
                                 
                                 # Optimize for production
-                                docker-compose -p remycl_app exec -T app php artisan config:cache &&
-                                docker-compose -p remycl_app exec -T app php artisan route:cache &&
-                                docker-compose -p remycl_app exec -T app php artisan view:cache &&
+                                docker-compose -p remycl_app exec -T php php artisan config:cache &&
+                                docker-compose -p remycl_app exec -T php php artisan route:cache &&
+                                docker-compose -p remycl_app exec -T php php artisan view:cache &&
                                 
                                 echo "Deployment completed successfully!"
                             '
