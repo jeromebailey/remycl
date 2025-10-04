@@ -123,6 +123,9 @@ pipeline {
                                 
                                 # Stop and remove old containers
                                 docker-compose -p remycl_app down --remove-orphans &&
+
+                                # Force remove any previous remycl_* containers
+                                docker rm -f $(docker ps -aq --filter "name=remycl_") 2>/dev/null || true
                                 
                                 # Start the application
                                 docker-compose -p remycl_app up -d --build &&
