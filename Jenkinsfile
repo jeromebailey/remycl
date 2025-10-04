@@ -116,7 +116,7 @@ pipeline {
                                 cd ${env.PROJECT_PATH} &&
                                 
                                 # Update docker-compose.yml with new image tag
-                                sed -i "s|image: ${DOCKER_IMAGE_NAME}:.*|image: ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_TAG}|g" docker-compose.yml &&
+                                sed -i "s|image: \${DOCKER_IMAGE_NAME}:.*|image: \${DOCKER_IMAGE_NAME}:\${DOCKER_IMAGE_TAG}|g" docker-compose.yml &&
                                 
                                 # Pull the latest image
                                 docker-compose pull &&
