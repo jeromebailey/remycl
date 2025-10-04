@@ -71,7 +71,7 @@ pipeline {
                     echo "Running application tests..."
                     
                     // Start MySQL container
-                    sh 'docker compose -f docker-compose.yml up -d mysql'
+                    sh 'docker-compose -f docker-compose.yml up -d mysql'
 
                     // Give MySQL a moment to initialize
                     sh 'sleep 15'
@@ -81,7 +81,7 @@ pipeline {
                     """
 
                     // Tear down containers after tests
-                    sh 'docker compose -f docker-compose.yml down'
+                    sh 'docker-compose -f docker-compose.yml down'
                 }
             }
         }
