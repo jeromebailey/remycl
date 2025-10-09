@@ -31,10 +31,10 @@ use App\Models\Applications as ModelsApplications;
 Route::get('/', function () {
     return view('auth.login');
 }
-)->name('login');
+)->name('home');
 
 Route::get('login', [App\Http\Controllers\Auth\LoginController::class, 'login'])->name('login');
-Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'do_login'])->name('login');
+Route::post('login', [App\Http\Controllers\Auth\LoginController::class, 'do_login'])->name('login.submit');
 Route::get('logout', [App\Http\Controllers\Auth\LogoutController::class, 'do_logout'])->name('logout');
 
     // Route::view('/', 'call');
@@ -49,7 +49,7 @@ Route::prefix('/admin')->group(function () {
     Route::get('/my-dashboard', [App\Http\Controllers\DashboardController::class, 'adminDashboard'])->name('admin/my-dashboard');
 
     Route::get('/import-clients', [App\Http\Controllers\ClientController::class, 'importClients'])->name('admin/import-clients');
-    Route::post('/import-clients', [App\Http\Controllers\ClientController::class, 'doImportClients'])->name('admin/import-clients');
+    Route::post('/import-clients', [App\Http\Controllers\ClientController::class, 'doImportClients'])->name('admin/import-clients.submit');
 
     Route::get('/client/{id}', [App\Http\Controllers\ClientController::class, 'showClientDetails'])->name('admin/client');
     Route::get('/permissions', [App\Http\Controllers\PermissionController::class, 'index'])->name('admin/permissions');
@@ -86,13 +86,13 @@ Route::prefix('/admin')->group(function () {
     Route::get('/reports/index', [App\Http\Controllers\ReportController::class, 'index'])->name('admin/reports');
     Route::get('/reports/all-clients', [App\Http\Controllers\ReportController::class, 'getNoOfPatientsForPhysicians'])->name('admin/reports/all-clients');
     Route::get('/reports/policies-expiring', [App\Http\Controllers\ReportController::class, 'getClientsWithPoliciesExpiring'])->name('admin/reports/policies-expiring');
-    Route::post('/reports/policies-expiring', [App\Http\Controllers\ReportController::class, 'doGetClientsWithPoliciesExpiring'])->name('admin/reports/policies-expiring');
+    Route::post('/reports/policies-expiring', [App\Http\Controllers\ReportController::class, 'doGetClientsWithPoliciesExpiring'])->name('admin/reports/policies-expiring.submit');
     
     Route::get('/reports/expired-policies', [App\Http\Controllers\ReportController::class, 'getNoOfPatientsForPhysicians'])->name('admin/reports/expired-policies');
     Route::get('/reports/sms-sent-by-agent', [App\Http\Controllers\ReportController::class, 'getSMSSentReport'])->name('admin/reports/sms-sent-by-agent');
 
     Route::get('/sign-up-patient', [App\Http\Controllers\PatientController::class, 'signupPatient'])->name('admin/sign-up-patient');
-    Route::post('/sign-up-patient', [App\Http\Controllers\PatientController::class, 'doSignUpPatient'])->name('admin/sign-up-patient');
+    Route::post('/sign-up-patient', [App\Http\Controllers\PatientController::class, 'doSignUpPatient'])->name('admin/sign-up-patient.submit');
     Route::post('/get-years-from-patient-data', [App\Http\Controllers\PatientController::class, 'getBPDataDDLYearsForPatient'])->name('admin/get-years-from-patient-data');
     Route::post('/send-sms-to-clients-with-expiring-policies', [App\Http\Controllers\ClientController::class, 'sendSMSToClientsWithExpiringPolicies'])->name('admin/send-sms-to-clients-with-expiring-policies');
     Route::get('/update-clients-balances', [App\Http\Controllers\ClientController::class, 'updateClientsBalances'])->name('admin/update-clients-balances');
@@ -113,7 +113,7 @@ Route::prefix('/agent')->group(function () {
     Route::get('/my-dashboard', [App\Http\Controllers\DashboardController::class, 'adminDashboard'])->name('agent/my-dashboard');
 
     Route::get('/import-clients', [App\Http\Controllers\ClientController::class, 'importClients'])->name('agent/import-clients');
-    Route::post('/import-clients', [App\Http\Controllers\ClientController::class, 'doImportClients'])->name('agent/import-clients');
+    Route::post('/import-clients', [App\Http\Controllers\ClientController::class, 'doImportClients'])->name('agent/import-clients.submit');
 
     Route::get('/client/{id}', [App\Http\Controllers\ClientController::class, 'showClientDetails'])->name('agent/client');
     Route::get('/permissions', [App\Http\Controllers\PermissionController::class, 'index'])->name('agent/permissions');
