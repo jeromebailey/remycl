@@ -133,7 +133,7 @@ pipeline {
                         # Wait for MySQL to be healthy
                         echo "Waiting for MySQL to be ready..." &&
                         for i in \$(seq 1 30); do 
-                            docker-compose -p remycl_app exec -T php php -r "new PDO('mysql:host=mysql;dbname=remycl', 'remycl_admin', '3v3rb0dyH3@1th');" 2>/dev/null && break
+                            docker-compose -p remycl_app exec -T php php -r "new PDO(\\"mysql:host=mysql;dbname=remycl\\", \\"remycl_admin\\", \\"3v3rb0dyH3@1th\\");" 2>/dev/null && break
                             echo "Waiting for MySQL... (\$i/30)"
                             sleep 2
                         done &&
