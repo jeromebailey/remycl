@@ -132,7 +132,11 @@ pipeline {
 
                         # Wait for MySQL to be healthy
                         echo "Waiting for MySQL to be ready..." &&
-                        for i in {1..30}; do docker exec remycl_mysql mariadb-admin ping -h localhost -u root -p52H3@1th --silent 2>/dev/null && break || sleep 2; done &&
+                        for i in $(seq 1 30); do 
+                            docker-compose -p remycl_app exec -T php php -r "new PDO('mysql:host=mysql;dbname=remycl', 'remycl_admin', '3v3rb0dyH3@1th');" 2>/dev/null && break
+                            echo "Waiting for MySQL... ($i/30)"
+                            sleep 2
+                        done &&
                         echo "MySQL is ready!" &&
 
                         # Run migrations
