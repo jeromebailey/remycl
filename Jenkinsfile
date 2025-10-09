@@ -132,7 +132,7 @@ pipeline {
 
                         # Wait for MySQL to be healthy
                         echo "Waiting for MySQL to be ready..." &&
-                        timeout 60 bash -c 'until docker exec remycl_mysql mysqladmin ping -h localhost -u root -p52H3@1th --silent &> /dev/null; do echo "MySQL not ready, waiting..."; sleep 2; done' &&
+                        for i in {1..30}; do docker exec remycl_mysql mysqladmin ping -h localhost -u root -p52H3@1th --silent && break || sleep 2; done &&
                         echo "MySQL is ready!" &&
 
                         # Run migrations
