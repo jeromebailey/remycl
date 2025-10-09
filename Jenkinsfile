@@ -128,7 +128,7 @@ pipeline {
                         docker-compose -p remycl_app down --remove-orphans &&
 
                         # Start the application
-                        docker-compose -p remycl_app up -d --build &&
+                        docker-compose -p remycl_app up -d --build --force-recreate &&
 
                         # Wait for MySQL to be healthy
                         echo "Waiting for MySQL to be ready..." &&
