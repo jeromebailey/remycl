@@ -181,7 +181,7 @@ return [
 
         Artisaninweb\SoapWrapper\ServiceProvider::class,
 
-        App\Providers\PermissionServiceProvider::class,
+        //App\Providers\PermissionServiceProvider::class,
 
         Maatwebsite\Excel\ExcelServiceProvider::class,
 
