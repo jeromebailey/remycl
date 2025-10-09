@@ -169,7 +169,7 @@ pipeline {
                     sleep(time: 10, unit: 'SECONDS')
                     
                     sh """
-                        curl -f http://${env.SERVER}:8000/health || exit 1
+                        curl -f http://${env.SERVER}:9651/health || exit 1
                     """
                     
                     echo "Health check passed!"
